@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('template');
+		$dotenv = new Dotenv\Dotenv('.');
+		$dotenv->load();
+		$data = [
+			'mysql_user' => getenv('MYSQL_USER')
+		];
+		$this->load->view('template', $data);
 	}
 }
